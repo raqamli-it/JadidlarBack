@@ -1,14 +1,13 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.10-slim
+# Base image
+FROM python:3.10
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Working directory
+WORKDIR /Jadidlar
 
-# Create and set the working directory
-WORKDIR /app
+# Environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
@@ -16,19 +15,26 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy the requirements.txt file and install the dependencies
-COPY requirements.txt /app/
+# Install Python dependencies
+COPY requirements.txt /Jadidlar/
 RUN pip install --upgrade pip==23.0.1
 RUN pip3 install -r requirements.txt
 
-# Copy the entire project
-COPY . /app/
+# Create and set permissions for staticfiles folder
+RUN mkdir -p /Jadidlar/staticfiles
+RUN chmod 755 /Jadidlar/staticfiles
 
-# Copy the environment variables file
-COPY ./.env /app/
+# Copy project files
+COPY . /Jadidlar/
 
-# Expose the port the app runs on
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
+# Django settings
+ENV DJANGO_SETTINGS_MODULE=config.settings
+
+# Expose port
 EXPOSE 8000
 
-# Run the Django application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run migrations and start Daphne server
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

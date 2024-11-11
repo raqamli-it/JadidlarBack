@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/Jadidlar
+      - static_volume:/Jadidlar/staticfiles
+      - media_volume:/Jadidlar/mediafiles
+    ports:
+      - "8002:8000"
+    depends_on:
+      - jadid_db
+
+  jadid_db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: jadid_db
+      POSTGRES_USER: jadidlar_user
+      POSTGRES_PASSWORD: jadidlar_password
+    ports:
+      - "5434:5432"
+    volumes:
+      - /all_db/jadidlar_db/db:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
