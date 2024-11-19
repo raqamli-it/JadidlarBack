@@ -37,4 +37,4 @@ ENV DJANGO_SETTINGS_MODULE=config.settings
 EXPOSE 5300
 
 # Run migrations and start Daphne server
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:5300"]
