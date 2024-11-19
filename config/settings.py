@@ -123,7 +123,8 @@ DATABASES = {
         'NAME': 'jadid_db',
         'USER': 'jadidlar_user',
         'PASSWORD': 'jadidlar_password',
-        'HOST': 'jadid_db',
+        'HOST': '93.188.84.132',
+#        'HOST': 'jadid_db',
         'PORT': '5432',
     }
 }
