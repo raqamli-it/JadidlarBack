@@ -1,0 +1,42 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t jadidlar-backend .
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          #docker login -u userhubdocker1 -p Docker_hub
+          docker tag jadidlar-backend userhubdocker1/jadidlar-backend
+          docker push userhubdocker1/jadidlar-backend
+
+      - name: Disable strict host key checking
+        run: | 
+          mkdir -p ~/.ssh
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: SSH into server and deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 93.188.84.132 >> ~/.ssh/known_hosts
+          ssh -T -i ~/.ssh/id_rsa root@93.188.84.132 << EOF
+            docker pull userhubdocker1/jadidlar-backend
+            docker stop jadidlar-container || true
+            docker rm jadidlar-container || true
+            docker run --name jadidlar-container -d -p 5300:5300 userhubdocker1/jadidlar-backend
+          EOF
