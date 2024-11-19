@@ -17,7 +17,6 @@ jobs:
         run: |
           docker build -t jadidlar-backend .
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          #docker login -u userhubdocker1 -p Docker_hub
           docker tag jadidlar-backend userhubdocker1/jadidlar-backend
           docker push userhubdocker1/jadidlar-backend
 
@@ -36,7 +35,7 @@ jobs:
           ssh-keyscan -H 93.188.84.132 >> ~/.ssh/known_hosts
           ssh -T -i ~/.ssh/id_rsa root@93.188.84.132 << EOF
             docker pull userhubdocker1/jadidlar-backend
-            docker stop jadidlar-container || true
-            docker rm jadidlar-container || true
-            docker run --name jadidlar-container -d -p 5300:5300 userhubdocker1/jadidlar-backend
+            docker stop jadid-back-container || true
+            docker rm jadid-back-container || true
+            docker run --name jadid-back-container -d -p 5300:5300 userhubdocker1/jadidlar-backend
           EOF
