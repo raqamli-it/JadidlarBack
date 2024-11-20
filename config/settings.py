@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-h0p&3so%)!_=1n3mi0+a$$!162ru92^xh65l2l4nz^jy^x=&-*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jadidend.pythonanywhere.com', '*']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -91,7 +91,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://subdomain.jadidlar.uz']
+CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz']
 
 ROOT_URLCONF = 'config.urls'
 
@@ -202,7 +202,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://subdomain.jadidlar.uz',
+    'https://https://backend.jadidlar.uz',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
