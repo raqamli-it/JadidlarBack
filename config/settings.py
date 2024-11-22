@@ -91,7 +91,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz']
+CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz'] 
 
 ROOT_URLCONF = 'config.urls'
 
