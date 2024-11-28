@@ -194,7 +194,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'language-code',
