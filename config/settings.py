@@ -203,7 +203,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 
 CORS_ALLOWED_ORIGINS = [
     'https://backend.jadidlar.uz',
-    'http://backend.jadidlar.uz',
+    'https://jadidlar.uz',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
