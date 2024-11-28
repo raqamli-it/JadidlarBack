@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 
 from corsheaders.defaults import default_headers
-from rest_framework.settings import api_settings
 from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 
@@ -91,6 +90,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+ 
 
 ROOT_URLCONF = 'config.urls'
 
@@ -110,6 +110,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
@@ -122,10 +123,11 @@ DATABASES = {
         'USER': 'jadidlar_user',
         'PASSWORD': 'jadidlar_password',
         'HOST': '93.188.84.132',
-        #        'HOST': 'jadid_db',
+#        'HOST': 'jadid_db',
         'PORT': '5432',
     }
 }
+
 
 # DATABASES = {
 #     'default': {
@@ -191,6 +193,13 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
     },
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'language-code',
+]
+
 
 JAZZMIN_SETTINGS = {
     "site_title": "Foydali Havolalar",
@@ -273,8 +282,10 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = '/admin/'
 
+
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
+
 
 ...
 # Google OAuth2 settings
@@ -282,31 +293,12 @@ BASE_FRONTEND_URL = os.environ.get('DJANGO_BASE_FRONTEND_URL', default='http://1
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 
-# HTTPS ni majburiy yoqish
-SECURE_SSL_REDIRECT = True  # HTTP ni HTTPS ga yo'naltirish
-SESSION_COOKIE_SECURE = True  # Faqat HTTPS orqali sessiya cookie'laridan foydalanish
-CSRF_COOKIE_SECURE = True  # Faqat HTTPS orqali CSRF cookie'laridan foydalanish
 
-# HTTPS orqali to'g'ri ishlashni ta'minlash
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# CORS (Cross-Origin Resource Sharing) sozlamalari
-# CORS_ORIGIN_ALLOW_ALL = False  # Barcha domenlarga ruxsatni o'chirish
+
+CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz',]
 CORS_ALLOWED_ORIGINS = [
-    'https://backend.jadidlar.uz',  # API domeni
+    'https://backend.jadidlar.uz',
 ]
 
-# CSRF ruxsat berilgan domenlar
-CSRF_TRUSTED_ORIGINS = [
-    'https://backend.jadidlar.uz',  # Swagger va boshqa API domenlari
-]
-
-# Qo'shimcha headerlarni qo'llash
-CORS_ALLOW_HEADERS = list(default_headers) + [
-    'language-code',
-]
-
-# Swaggerda HTTPS ulanishni majburiy qilish
-SWAGGER_SETTINGS = {
-    'USE_HTTPS': True,
-}
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
