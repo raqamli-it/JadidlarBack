@@ -90,8 +90,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz'] 
+ 
 
 ROOT_URLCONF = 'config.urls'
 
@@ -201,12 +200,6 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'language-code',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://backend.jadidlar.uz',
-    'https://jadidlar.uz',
-]
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 JAZZMIN_SETTINGS = {
     "site_title": "Foydali Havolalar",
@@ -299,3 +292,13 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 BASE_FRONTEND_URL = os.environ.get('DJANGO_BASE_FRONTEND_URL', default='http://127.0.0.1:8000/')
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
+
+
+
+
+CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz',]
+CORS_ALLOWED_ORIGINS = [
+    'https://backend.jadidlar.uz',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
