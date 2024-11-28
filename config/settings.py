@@ -194,12 +194,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_HEADERS = list(default_headers) + [
-    'language-code',
-]
-
 
 JAZZMIN_SETTINGS = {
     "site_title": "Foydali Havolalar",
@@ -295,10 +289,24 @@ GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 
 
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz',]
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ALLOWED_ORIGINS = [
-    'https://backend.jadidlar.uz',
+    'https://backend.jadidlar.uz',  # API uchun asosiy domen
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://backend.jadidlar.uz',  # Swagger va boshqa domenlar uchun
+]
+
+# Agar boshqa headerlar kerak bo'lsa
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'Authorization',  # Token ishlatilayotgan bo'lsa
+    'language-code',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
