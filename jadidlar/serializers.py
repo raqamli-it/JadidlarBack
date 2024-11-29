@@ -84,7 +84,7 @@ class JadidListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Jadid
-        fields = ('id', 'fullname', 'image', 'bio', 'birthday', 'die_day', 'order', 'create', 'update', 'blog_views')
+        fields = ('id', 'fullname', 'image', 'birthday', 'die_day')
 
     def get_image(self, obj):
         request = self.context.get('request')

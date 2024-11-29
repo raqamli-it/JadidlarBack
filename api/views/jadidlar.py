@@ -22,7 +22,7 @@ class JadidlarListView(ListAPIView):
 
 @api_view(['GET'])
 def get_random_jadid(request):
-    fifteen_records = Jadid.objects.order_by('?')[:15]
+    fifteen_records = list(Jadid.objects.order_by('order')[:15])
     random.shuffle(fifteen_records)
     serializer = JadidListSerializer(fifteen_records, many=True, context={'request': request})
     return Response(serializer.data)
