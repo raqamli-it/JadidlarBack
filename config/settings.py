@@ -296,7 +296,7 @@ GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 
 
 
-CSRF_TRUSTED_ORIGINS = ['https://backend.jadidlar.uz',]
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', 'https://backend.jadidlar.uz',]
 CORS_ALLOWED_ORIGINS = [
     'https://backend.jadidlar.uz',
 ]
