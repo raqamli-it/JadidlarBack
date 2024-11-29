@@ -4,7 +4,7 @@ from rest_framework.generics import ListAPIView
 from django.shortcuts import get_object_or_404
 from api.pagination import ResultsSetPagination
 from jadidlar.models import Jadid
-from jadidlar.serializers import JadidSerializer
+from jadidlar.serializers import JadidSerializer, JadidListSerializer
 from rest_framework.decorators import api_view
 from rest_framework import filters
 from rest_framework.response import Response
@@ -13,7 +13,7 @@ from rest_framework.response import Response
 class JadidlarListView(ListAPIView):
     search_fields = ['fullname',]
     filter_backends = (filters.SearchFilter,)
-    serializer_class = JadidSerializer
+    serializer_class = JadidListSerializer
     pagination_class = ResultsSetPagination
 
     def get_queryset(self):
@@ -22,9 +22,9 @@ class JadidlarListView(ListAPIView):
 
 @api_view(['GET'])
 def get_random_jadid(request):
-    fifteen_records = list(Jadid.objects.order_by('order')[:15])
+    fifteen_records = Jadid.objects.order_by('?')[:15]
     random.shuffle(fifteen_records)
-    serializer = JadidSerializer(fifteen_records, many=True, context={'request': request})
+    serializer = JadidListSerializer(fifteen_records, many=True, context={'request': request})
     return Response(serializer.data)
 
 

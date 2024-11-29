@@ -76,3 +76,19 @@ class JadidSerializer(serializers.ModelSerializer):
             data['images'] = [{'image': base_url + img.image.url} for img in images]
 
         return data
+
+
+
+class JadidListSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Jadid
+        fields = ('id', 'fullname', 'image', 'bio', 'birthday', 'die_day', 'order', 'create', 'update', 'blog_views')
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image and request:
+            base_url = request.build_absolute_uri('/')[:-1]
+            return base_url + obj.image.url
+        return None
