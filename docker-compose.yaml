@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/Jadidlar
       - static_volume:/Jadidlar/staticfiles
-      - media_volume:/Jadidlar/media
+      - media_volume:/Jadidlar/mediafiles
     ports:
       - "8002:8000"
     depends_on:
