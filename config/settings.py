@@ -296,6 +296,8 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 ]
 
 
+
+
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', 'https://backend.jadidlar.uz',]
 # CORS_ALLOWED_ORIGINS = [
 #     'https://backend.jadidlar.uz',
