@@ -10,7 +10,7 @@ class Foydali_havolalar(models.Model):
     logo_image = models.ImageField(blank=True, null=True, upload_to='logo_images/')
 
     def __str__(self):
-        return self.title
+        return self.title or ''
 
     class Meta:
         verbose_name = 'Foydali_havola'
