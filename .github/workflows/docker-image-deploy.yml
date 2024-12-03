@@ -37,5 +37,7 @@ jobs:
             docker pull userhubdocker1/jadidlar-backend
             docker stop jadid-back-container || true
             docker rm jadid-back-container || true
-            docker run --name jadid-back-container -d -p 5300:5300 userhubdocker1/jadidlar-backend 
+            docker run --name jadid-back-container \
+              -v /home/Jadidlar/media:/Jadidlar/media \
+              -d -p 5300:5300 userhubdocker1/jadidlar-backend 
           EOF
