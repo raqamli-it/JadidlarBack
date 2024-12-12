@@ -40,4 +40,4 @@ jobs:
             docker run --name jadid-back-container \
               -v /home/Jadidlar/media:/Jadidlar/media \
               -d -p 5300:5300 userhubdocker1/jadidlar-backend 
-          EOF
+          EOF 
