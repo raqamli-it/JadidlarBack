@@ -285,11 +285,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'X-Custom-Header',
+    'content-type',
+    'authorization',
 ]
 
-
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', "https://jadidlar.uz",
-                        "https://backend.jadidlar.uz",]
+                        "https://backend.jadidlar.uz", ]
 # CORS_ALLOWED_ORIGINS = [
 #     "https://jadidlar.uz",
 #     "https://backend.jadidlar.uz",
@@ -298,4 +299,12 @@ CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', "https://jadidlar.uz",
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS',
+]
 
