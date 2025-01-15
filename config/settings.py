@@ -284,14 +284,18 @@ GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
-    'language-code',
+    'X-Custom-Header',
 ]
+
 
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', "https://jadidlar.uz",
                         "https://backend.jadidlar.uz",]
-CORS_ALLOWED_ORIGINS = [
-    "https://jadidlar.uz",
-    "https://backend.jadidlar.uz",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://jadidlar.uz",
+#     "https://backend.jadidlar.uz",
+# ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CORS_ALLOW_CREDENTIALS = True
+
