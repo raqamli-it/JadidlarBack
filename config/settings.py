@@ -90,7 +90,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
- 
 
 ROOT_URLCONF = 'config.urls'
 
@@ -110,7 +109,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
@@ -123,11 +121,10 @@ DATABASES = {
         'USER': 'jadidlar_user',
         'PASSWORD': 'jadidlar_password',
         'HOST': '93.188.84.132',
-#        'HOST': 'jadid_db',
+        #        'HOST': 'jadid_db',
         'PORT': '5432',
     }
 }
-
 
 # DATABASES = {
 #     'default': {
@@ -193,9 +190,6 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
     },
 }
-
-
-
 
 JAZZMIN_SETTINGS = {
     "site_title": "Foydali Havolalar",
@@ -278,10 +272,8 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_REDIRECT_URL = '/admin/'
 
-
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
-
 
 ...
 # Google OAuth2 settings
@@ -295,12 +287,11 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'language-code',
 ]
 
-
-
-
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', 'https://backend.jadidlar.uz',]
-# CORS_ALLOWED_ORIGINS = [
-#     'https://backend.jadidlar.uz',
-# ]
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', "https://jadidlar.uz",
+                        "https://backend.jadidlar.uz",]
+CORS_ALLOWED_ORIGINS = [
+    "https://jadidlar.uz",
+    "https://backend.jadidlar.uz",
+]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
