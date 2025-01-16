@@ -289,12 +289,15 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'authorization',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:5300', "https://jadidlar.uz",
-                        "https://backend.jadidlar.uz", ]
-# CORS_ALLOWED_ORIGINS = [
-#     "https://jadidlar.uz",
-#     "https://backend.jadidlar.uz",
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://jadidlar.uz",
+    "https://backend.jadidlar.uz",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://jadidlar.uz",
+    "https://backend.jadidlar.uz",
+]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
