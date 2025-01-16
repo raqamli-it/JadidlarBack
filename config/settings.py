@@ -281,10 +281,7 @@ BASE_FRONTEND_URL = os.environ.get('DJANGO_BASE_FRONTEND_URL', default='http://1
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 CORS_ALLOW_HEADERS = list(default_headers) + [
-    'X-Custom-Header',
     'content-type',
     'authorization',
 ]
@@ -299,15 +296,4 @@ CORS_ALLOWED_ORIGINS = [
     "https://backend.jadidlar.uz",
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'DELETE',
-    'OPTIONS',
-]
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Faqat HTTPS va proxy bo'lsa kerak
