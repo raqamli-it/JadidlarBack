@@ -289,6 +289,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 CSRF_TRUSTED_ORIGINS = [
     "https://jadidlar.uz",
     "https://backend.jadidlar.uz",
+    "http://localhost:5173"
 ]
 
 CORS_ALLOWED_ORIGINS = [
