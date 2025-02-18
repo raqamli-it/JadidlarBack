@@ -297,4 +297,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://backend.jadidlar.uz",
 ]
 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http://localhost:\d+$",
+]
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Faqat HTTPS va proxy bo'lsa kerak
