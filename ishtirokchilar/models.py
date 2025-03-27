@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 class Ishtirokchilar(models.Model):
     fullname = models.CharField(max_length=100, blank=True, null=True)
     position = models.CharField(max_length=100, verbose_name='Lavozimi', blank=True, null=True)
-    degree = models.CharField(max_length=100, verbose_name='Lavozimi', blank=True, null=True)
+    degree = models.CharField(max_length=100, verbose_name='Darajasi', blank=True, null=True)
     image = models.ImageField(upload_to='image')
     order = models.IntegerField(default=100, blank=True, null=True)
 

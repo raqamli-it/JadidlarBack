@@ -5,4 +5,4 @@ from ishtirokchilar.models import Ishtirokchilar
 
 @register(Ishtirokchilar)
 class IshtirokchilarTranslationOptions(TranslationOptions):
-    fields = ('fullname', 'position')
+    fields = ('fullname', 'position', 'degree')

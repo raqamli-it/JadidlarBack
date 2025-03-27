@@ -5,7 +5,7 @@ from ishtirokchilar.models import Ishtirokchilar
 class IshtirokchilarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ishtirokchilar
-        fields = ('id', 'fullname', 'position', 'image', 'order',)
+        fields = ('id', 'fullname', 'position', 'degree', 'image', 'order',)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
