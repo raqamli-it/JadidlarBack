@@ -290,15 +290,13 @@ CSRF_TRUSTED_ORIGINS = [
     "https://jadidlar.uz",
     "https://backend.jadidlar.uz",
     "http://localhost:5173",
-    "http://jadid.digitallaboratory.uz/",
-    "https://jadid.digitallaboratory.uz/",
+    "https://jadid.digitallaboratory.uz"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://jadidlar.uz",
     "https://backend.jadidlar.uz",
-    "http://jadid.digitallaboratory.uz/",
-    "https://jadid.digitallaboratory.uz/",
+    "https://jadid.digitallaboratory.uz"
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
