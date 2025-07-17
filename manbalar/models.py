@@ -3,6 +3,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
+from PIL import Image
 
 User = get_user_model()
 
@@ -111,14 +112,22 @@ class RasmlarImage(models.Model):
     admin_photo.short_description = 'Rasm'
     admin_photo.allow_tags = True
 
+    # def clean(self):
+    #     super().clean()
+    #     if self.image:
+    #         content_type = self.image.file.content_type
+    #         allowed_content_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
+    #         if content_type not in allowed_content_types:
+    #             raise ValidationError(_('Faqat JPEG, JPG, PNG yoki GIF formatlari qo\'llaniladi.'))
     def clean(self):
         super().clean()
         if self.image:
-            content_type = self.image.file.content_type
-            allowed_content_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
-            if content_type not in allowed_content_types:
-                raise ValidationError(_('Faqat JPEG, JPG, PNG yoki GIF formatlari qo\'llaniladi.'))
-
+            try:
+                img = Image.open(self.image)
+                if img.format.lower() not in ['jpeg', 'jpg', 'png', 'gif']:
+                    raise ValidationError(_('Faqat JPEG, JPG, PNG yoki GIF fayllar ruxsat etiladi.'))
+            except Exception:
+                raise ValidationError(_('Yuklangan fayl haqiqiy rasm emas yoki buzilgan.'))
     def save(self, *args, **kwargs):
         # 5 ta rasm qo'shishni tekshirish
         if not self.pk and Rasmlar.objects.count() >= 100:
