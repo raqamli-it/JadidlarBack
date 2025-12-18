@@ -24,6 +24,7 @@ services:
     volumes:
       - /all_db/jadidlar_db/db:/var/lib/postgresql/data
 
+
 volumes:
   postgres_data:
   static_volume:
