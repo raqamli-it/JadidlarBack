@@ -6,8 +6,8 @@ services:
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/Jadidlar
-      - static_volume:/Jadidlar/staticfiles
-      - media_volume:/Jadidlar/media
+      - /home/username/backup/volumes/jadidlarback_media_volume:/Jadidlar/media
+      - /home/username/backup/volumes/jadidlarback_static_volume:/Jadidlar/staticfiles
     ports:
       - "8002:8000"
     depends_on:
