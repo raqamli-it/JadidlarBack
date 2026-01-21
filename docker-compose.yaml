@@ -12,17 +12,17 @@ services:
       - traefik-network
       - local-net
     labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.jadidlarweb.rule=Host(`backend.jadidlar.uz`)"
-        - "traefik.http.routers.jadidlarweb.service=jadidlarweb"
-        - "traefik.http.routers.jadidlarweb.entrypoints=websecure"
-        - "traefik.http.services.jadidlarweb.loadbalancer.server.port=8000"
-        - "traefik.http.routers.jadidlarweb.tls=true"
-        - "traefik.http.routers.jadidlarweb.tls.certresolver=letsencrypt"
-        - "traefik.http.services.jadidlarweb.loadbalancer.passhostheader=true"
-        - "traefik.http.routers.jadidlarweb.middlewares=compresstraefik"
-        - "traefik.http.middlewares.compresstraefik.compress=true"
-        - "traefik.docker.network=traefik-network"  
+      - "traefik.enable=true"
+      - "traefik.http.routers.jadidlarweb.rule=Host(`backend.jadidlar.uz`)"
+      - "traefik.http.routers.jadidlarweb.service=jadidlarweb"
+      - "traefik.http.routers.jadidlarweb.entrypoints=websecure"
+      - "traefik.http.services.jadidlarweb.loadbalancer.server.port=8000"
+      - "traefik.http.routers.jadidlarweb.tls=true"
+      - "traefik.http.routers.jadidlarweb.tls.certresolver=letsencrypt"
+      - "traefik.http.services.jadidlarweb.loadbalancer.passhostheader=true"
+      - "traefik.http.routers.jadidlarweb.middlewares=compresstraefik"
+      - "traefik.http.middlewares.compresstraefik.compress=true"
+      - "traefik.docker.network=traefik-network"
 
   jadid_db:
     image: postgres:18.1
@@ -36,6 +36,6 @@ services:
       - local-net
 
 networks:
-    traefik-network:
-        external: true
-    local-net:
+  traefik-network:
+    external: true
+  local-net:
