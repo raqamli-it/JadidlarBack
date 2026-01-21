@@ -1,43 +1,19 @@
-name: Deploy to Server
-
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: [self-hosted, linux, docker]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Build and push Docker image
+      - name: Docker info
+        run: docker info
+
+      - name: Build image
         run: |
-          docker build -t jadidlar-backend .
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker tag jadidlar-backend userhubdocker1/jadidlar-backend
-          docker push userhubdocker1/jadidlar-backend
-
-      - name: Disable strict host key checking
-        run: | 
-          mkdir -p ~/.ssh
-          echo "StrictHostKeyChecking no" >> ~/.ssh/config
-
-      - name: SSH into server and deploy
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 93.188.84.132 >> ~/.ssh/known_hosts
-          ssh -T -i ~/.ssh/id_rsa root@93.188.84.132 << EOF
-            docker pull userhubdocker1/jadidlar-backend
-            docker stop jadid-back-container || true
-            docker rm jadid-back-container || true
-            docker run --name jadid-back-container \
-              -v /home/Jadidlar/media:/Jadidlar/media \
-              -d -p 5300:5300 userhubdocker1/jadidlar-backend 
-          EOF
+          docker compose -f docker-compose.yaml up --build -d --force-recreate
